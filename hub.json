@@ -1,6 +1,6 @@
 {
-  "version": "0.2.1",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.2.1/shunhub-0.2.1-py3-none-any.whl",
-  "sha256": "8e722d50c45019292816ea17984d2917c22fa63d6f678f40406edddf9c667313",
-  "notes": "Hub update check: nothing new but the version, published to prove the self-update path."
+  "version": "0.2.2",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.2.2/shunhub-0.2.2-py3-none-any.whl",
+  "sha256": "4f3f7573d991895524eea0de8baf3e67817275b4a700e382a2221fb60c08180e",
+  "notes": "The updater now installs into the folders the installer used (install.json records them); folder names with non-ASCII letters are read correctly."
 }

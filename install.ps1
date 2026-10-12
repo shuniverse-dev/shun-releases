@@ -115,13 +115,23 @@
         if ($code -ne 0) { throw "SHUN HUB: uv tool install failed with exit code $code." }
         Remove-Item -Path $wheel -Force -ErrorAction SilentlyContinue
 
-        # 4. install.json for the Hub's own updates, and a Start Menu entry.
-        $binDir = Pick $env:UV_TOOL_BIN_DIR (Join-Path $env:USERPROFILE '.local\bin')
+        # 4. install.json for the Hub's own updates, and a Start Menu entry. uv says which tool dir and bin dir it
+        # used (UV_TOOL_DIR and UV_TOOL_BIN_DIR when set); they go into install.json because the Hub's updater runs
+        # with the Hub's environment only and must install into the same folders.
+        $oem = [Console]::OutputEncoding
+        try {
+            [Console]::OutputEncoding = [Text.Encoding]::UTF8  # uv writes UTF-8; the console would read it as OEM
+            $toolDir = (& $uv tool dir | Out-String).Trim()
+            $binDir = (& $uv tool dir --bin | Out-String).Trim()
+        } finally { [Console]::OutputEncoding = $oem }
+        if (-not $toolDir -or -not $binDir) { throw 'SHUN HUB: uv did not say where its tool folders are.' }
+        $toolDir = [IO.Path]::GetFullPath($toolDir)
+        $binDir = [IO.Path]::GetFullPath($binDir)
         $launcher = Join-Path $binDir 'shunhub.exe'
         if (-not (Test-Path $launcher)) { throw "SHUN HUB: $launcher was not created by uv." }
         $dataDir = Pick $env:SHUNHUB_DATA_DIR (Join-Path $env:LOCALAPPDATA 'ShunHub')
         New-Item -ItemType Directory -Force -Path $dataDir | Out-Null
-        $info = [ordered]@{ method = 'uv-tool'; uv = $uv; launcher = $launcher } | ConvertTo-Json
+        $info = [ordered]@{ method = 'uv-tool'; uv = $uv; launcher = $launcher; tool_dir = $toolDir; bin_dir = $binDir } | ConvertTo-Json
         [IO.File]::WriteAllText((Join-Path $dataDir 'install.json'), $info, (New-Object Text.UTF8Encoding $false))
         $menuDir = Pick $env:SHUNHUB_SHORTCUT_DIR (Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs')
         New-Item -ItemType Directory -Force -Path $menuDir | Out-Null
