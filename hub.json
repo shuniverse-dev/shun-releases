@@ -1,6 +1,6 @@
 {
-  "version": "0.2.0",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.2.0/shunhub-0.2.0-py3-none-any.whl",
-  "sha256": "2673b9ac60c5f20b44f8db788f67095bb93742cd398748760e9a99a476ae1c11",
-  "notes": "First cloud release: install with one line, apps from GitHub, keys, self-update."
+  "version": "0.2.1",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.2.1/shunhub-0.2.1-py3-none-any.whl",
+  "sha256": "8e722d50c45019292816ea17984d2917c22fa63d6f678f40406edddf9c667313",
+  "notes": "Hub update check: nothing new but the version, published to prove the self-update path."
 }
