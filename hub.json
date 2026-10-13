@@ -1,6 +1,6 @@
 {
-  "version": "0.4.0",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.4.0/shunhub-0.4.0-py3-none-any.whl",
-  "sha256": "f799ff21e39e1273249339e044e58ad192626d09c527e9019efcd2fd68639fe0",
-  "notes": "The Shuniverse look: the handwritten Shun in the sidebar, the lion as the Hub's icon and as a watermark; the Start Menu entry carries the icon and the app id (existing installs fix theirs at the first start)"
+  "version": "0.4.1",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.4.1/shunhub-0.4.1-py3-none-any.whl",
+  "sha256": "77c8d8453564c1e34c7ddb97b443b65a769ef28703d7ea0f24b975b211d60a90",
+  "notes": "A lighter Hub: it now depends on PySide6-Essentials, about 200 MB less to download on every install and update"
 }
