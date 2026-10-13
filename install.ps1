@@ -78,11 +78,13 @@
         # 2. uv: the one already on this computer, or the latest release from Astral.
         $uvDir = Pick $env:UV_INSTALL_DIR (Join-Path $env:USERPROFILE '.local\bin')
         $uv = Join-Path $uvDir 'uv.exe'
+        $uvFetched = $false  # recorded in install.json: the Hub's uninstaller removes uv only when it put it here
         if (-not (Test-Path $uv)) {
             $found = Get-Command uv.exe -ErrorAction SilentlyContinue
             if ($found) { $uv = $found.Source }
         }
         if (-not (Test-Path $uv)) {
+            $uvFetched = $true
             $arch = if ($env:PROCESSOR_ARCHITECTURE -eq 'ARM64') { 'aarch64' } else { 'x86_64' }
             $zipUrl = "https://github.com/astral-sh/uv/releases/latest/download/uv-$arch-pc-windows-msvc.zip"
             Say "fetching uv from $zipUrl"
@@ -95,6 +97,22 @@
         }
         if (-not (Test-Path $uv)) { throw "SHUN HUB: uv.exe is not at $uv after the download." }
         Say "using uv at $uv"
+        # For the Hub's uninstaller: the file uv is (it removes uv only while it is still this file) and whether uv's
+        # data folder is new (only then may it remove the Pythons uv downloads). The line run again over an install
+        # that fetched uv keeps what that install recorded, as long as uv is still the same file.
+        $uvHash = (Get-FileHash -LiteralPath $uv -Algorithm SHA256).Hash.ToLower()
+        $uvDataCreated = -not (Test-Path -LiteralPath (Join-Path $env:APPDATA 'uv'))
+        $dataDir = Pick $env:SHUNHUB_DATA_DIR (Join-Path $env:LOCALAPPDATA 'ShunHub')
+        $previousFile = Join-Path $dataDir 'install.json'
+        if (Test-Path -LiteralPath $previousFile) {
+            try {
+                $previous = Get-Content -LiteralPath $previousFile -Raw | ConvertFrom-Json
+                if (($previous.uv_sha256 -eq $uvHash) -and ($previous.uv_fetched -eq $true)) {
+                    $uvFetched = $true
+                    if ($previous.uv_data_created -eq $true) { $uvDataCreated = $true }
+                }
+            } catch { }
+        }
 
         # 3. The wheel, verified against the checksum in hub.json, installed as a uv tool with Python 3.13.
         $downloads = Join-Path ([IO.Path]::GetTempPath()) 'shunhub-install'
@@ -129,9 +147,8 @@
         $binDir = [IO.Path]::GetFullPath($binDir)
         $launcher = Join-Path $binDir 'shunhub.exe'
         if (-not (Test-Path $launcher)) { throw "SHUN HUB: $launcher was not created by uv." }
-        $dataDir = Pick $env:SHUNHUB_DATA_DIR (Join-Path $env:LOCALAPPDATA 'ShunHub')
         New-Item -ItemType Directory -Force -Path $dataDir | Out-Null
-        $info = [ordered]@{ method = 'uv-tool'; uv = $uv; launcher = $launcher; tool_dir = $toolDir; bin_dir = $binDir } | ConvertTo-Json
+        $info = [ordered]@{ method = 'uv-tool'; uv = $uv; launcher = $launcher; tool_dir = $toolDir; bin_dir = $binDir; uv_fetched = $uvFetched; uv_sha256 = $uvHash; uv_data_created = $uvDataCreated } | ConvertTo-Json
         [IO.File]::WriteAllText((Join-Path $dataDir 'install.json'), $info, (New-Object Text.UTF8Encoding $false))
         $menuDir = Pick $env:SHUNHUB_SHORTCUT_DIR (Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs')
         New-Item -ItemType Directory -Force -Path $menuDir | Out-Null
