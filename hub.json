@@ -1,6 +1,6 @@
 {
-  "version": "0.3.0",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.3.0/shunhub-0.3.0-py3-none-any.whl",
-  "sha256": "6522b376151f1410f86546a5d3091a110a6dffe7ba1449e9378f108af86504e7",
-  "notes": "The store: private apps by serial from soulhouseproductions.com, no GitHub token needed. Existing installs switch by themselves."
+  "version": "0.4.0",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.4.0/shunhub-0.4.0-py3-none-any.whl",
+  "sha256": "f799ff21e39e1273249339e044e58ad192626d09c527e9019efcd2fd68639fe0",
+  "notes": "The Shuniverse look: the handwritten Shun in the sidebar, the lion as the Hub's icon and as a watermark; the Start Menu entry carries the icon and the app id (existing installs fix theirs at the first start)"
 }

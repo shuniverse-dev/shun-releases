@@ -135,11 +135,12 @@
         [IO.File]::WriteAllText((Join-Path $dataDir 'install.json'), $info, (New-Object Text.UTF8Encoding $false))
         $menuDir = Pick $env:SHUNHUB_SHORTCUT_DIR (Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs')
         New-Item -ItemType Directory -Force -Path $menuDir | Out-Null
-        $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut((Join-Path $menuDir 'SHUN HUB.lnk'))
-        $shortcut.TargetPath = $launcher
-        $shortcut.WorkingDirectory = $binDir
-        $shortcut.Description = 'SHUN HUB, the Shuniverse launch station'
-        $shortcut.Save()
+        # The entry is written by the Hub's own code (shunhub.shortcut loads no Qt): target, folder, description,
+        # the lion icon from the installed package and the application id the taskbar groups the Hub under.
+        $python = Join-Path $toolDir 'shunhub\Scripts\python.exe'
+        if (-not (Test-Path -LiteralPath $python)) { throw "SHUN HUB: $python was not created by uv." }
+        & $python -I -m shunhub.shortcut --create (Join-Path $menuDir 'SHUN HUB.lnk') --target $launcher --workdir (Split-Path -Parent $launcher)
+        if ($LASTEXITCODE -ne 0) { throw "SHUN HUB: could not write the Start Menu entry (exit code $LASTEXITCODE)." }
 
         # 5. Start it.
         Say "installed SHUN HUB $($index.version). Start it from the Start Menu (SHUN HUB) or run $launcher"
