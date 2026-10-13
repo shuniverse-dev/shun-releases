@@ -1,6 +1,6 @@
 {
-  "version": "0.2.3",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.2.3/shunhub-0.2.3-py3-none-any.whl",
-  "sha256": "a347cf44ea8bc7d29070bed68c9c8bff81b69d991a34d90bbc980f4d75f5f8d1",
-  "notes": "Self-update proof release: no change but the version."
+  "version": "0.3.0",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.3.0/shunhub-0.3.0-py3-none-any.whl",
+  "sha256": "6522b376151f1410f86546a5d3091a110a6dffe7ba1449e9378f108af86504e7",
+  "notes": "The store: private apps by serial from soulhouseproductions.com, no GitHub token needed. Existing installs switch by themselves."
 }
