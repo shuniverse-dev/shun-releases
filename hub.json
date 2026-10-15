@@ -1,6 +1,6 @@
 {
-  "version": "0.5.0",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.0/shunhub-0.5.0-py3-none-any.whl",
-  "sha256": "58e66e45bad5a22804be24e93956f4069b74e2735ac27040656849d20c7a58de",
-  "notes": "The Hub can remove itself: Windows Settings > Apps lists SHUN HUB with an Uninstall button, and Settings in the Hub has Remove SHUN HUB; it asks whether to keep your serials and apps"
+  "version": "0.5.1",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.1/shunhub-0.5.1-py3-none-any.whl",
+  "sha256": "3f4573c1c9b94d1ce0774037717e16d9200bce3c1d1600e39459dfb7f80cbc89",
+  "notes": "The refined SHUN HUB lockup in the sidebar"
 }
