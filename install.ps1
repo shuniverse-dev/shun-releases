@@ -1,5 +1,5 @@
 # SHUN HUB installer for Windows. Run it with one line in PowerShell:
-#   irm https://www.soulhouseproductions.com/shun/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/shuniverse-dev/shun-releases/main/install.ps1 | iex
 # It fetches uv (Astral's Python manager) when none is installed, lets uv install Python 3.13 and the Hub as a
 # tool, writes install.json so the Hub can update itself, adds a Start Menu entry and starts the Hub.
 # Folders: uv.exe in %USERPROFILE%\.local\bin (UV_INSTALL_DIR), the Hub's environment under uv's tool dir
@@ -44,20 +44,27 @@
 
         function Pick($value, $default) { if ($value) { return $value } else { return $default } }
 
-        # 1. bootstrap.json says where hub.json is; hub.json says which wheel to install.
+        # 1. bootstrap.json says where hub.json is; hub.json says which wheel to install. The releases repo comes
+        # first: a web host's browser check or a network's sign-in page can answer the website's address with a web
+        # page (HTTP 200), which GitHub's raw files are not behind.
         $bootstrapUrls = @()
         if ($env:SHUN_BOOTSTRAP_URL) { $bootstrapUrls += $env:SHUN_BOOTSTRAP_URL }
-        $bootstrapUrls += 'https://www.soulhouseproductions.com/shun/bootstrap.json'
         $bootstrapUrls += 'https://raw.githubusercontent.com/shuniverse-dev/shun-releases/main/bootstrap.json'
+        $bootstrapUrls += 'https://www.soulhouseproductions.com/shun/bootstrap.json'
         $bootstrap = $null
         foreach ($url in $bootstrapUrls) {
             # A miss is only a note and the next address is tried. This is not Get-Json: its errors are whole SHUN HUB:
             # messages, and the note shows just PowerShell's reason. An address that answers without an error is no
             # use either when what it sent has no hub_index: a website that serves bootstrap.json as a download
             # (octet-stream) hands PowerShell bytes instead of text, which ConvertFrom-Json turns into numbers, and
-            # {} has none.
+            # {} has none. No JSON starts with <: such an answer is a web page, and is said to be one.
             try {
-                $candidate = (Invoke-WebRequest -Uri $url -UseBasicParsing).Content | ConvertFrom-Json
+                $content = (Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 60).Content
+                if ("$content".TrimStart().StartsWith('<')) {
+                    Say "$url answered with a web page instead of bootstrap.json (a sign-in page of the network, or a browser check by the web host)"
+                    continue
+                }
+                $candidate = $content | ConvertFrom-Json
                 if (($candidate.hub_index -is [string]) -and $candidate.hub_index) {
                     $bootstrap = $candidate
                     Say "reading $url"
