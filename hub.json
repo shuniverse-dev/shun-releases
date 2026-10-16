@@ -1,6 +1,6 @@
 {
-  "version": "0.5.2",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.2/shunhub-0.5.2-py3-none-any.whl",
-  "sha256": "bd534d8a0efef0afd30d0eb85a03857f06570218fd372f21e76b8a1f92b89315",
-  "notes": "The download file and the installer take the script and bootstrap.json from GitHub first and say when an address answers with a web page (a browser check by the hosting); the Hub says so about the store too."
+  "version": "0.5.3",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.3/shunhub-0.5.3-py3-none-any.whl",
+  "sha256": "5dc0cc961ee20aa339f0ef8b14adaa54128a656413888a6a9435beb9be8fc0fd",
+  "notes": "A serial added in Settings says that the store is asked when Settings closes, instead of 'not recognised'; a refusal shows the server's own message (as the hosting's bot protection writes it)."
 }
