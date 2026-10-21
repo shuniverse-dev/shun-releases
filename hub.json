@@ -1,6 +1,6 @@
 {
-  "version": "0.5.4",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.4/shunhub-0.5.4-py3-none-any.whl",
-  "sha256": "628d8c73b0d0a96a37742776ac6598ca146b7801175ffe4990d64d9c5b49c8d0",
-  "notes": "SHUN HUB 0.5.4: a bot started from the Hub gets the serials that unlock it, for its Update teachings from the store"
+  "version": "0.5.5",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.5/shunhub-0.5.5-py3-none-any.whl",
+  "sha256": "07cb0bdc4c19496cfb597a1cb5ca80f0cbc93c04209ae5b778ef1837f1ba1a5a",
+  "notes": "An app listed by two catalogs now comes from the newest version (a local folder still wins), so a catalog shown from its cache no longer hides a release in another."
 }
