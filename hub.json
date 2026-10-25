@@ -1,6 +1,6 @@
 {
-  "version": "0.5.5",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.5.5/shunhub-0.5.5-py3-none-any.whl",
-  "sha256": "07cb0bdc4c19496cfb597a1cb5ca80f0cbc93c04209ae5b778ef1837f1ba1a5a",
-  "notes": "An app listed by two catalogs now comes from the newest version (a local folder still wins), so a catalog shown from its cache no longer hides a release in another."
+  "version": "0.6.0",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.0/shunhub-0.6.0-py3-none-any.whl",
+  "sha256": "79d43ce728214c9906cebd153b4480bf9fb92d2247e2eb17013fb69662228c2b",
+  "notes": "SHUN HUB 0.6.0: the lion in the notification area launches your apps; closing the window keeps the Hub there, Quit SHUN HUB ends it; starting the Hub again brings its window back"
 }
