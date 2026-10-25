@@ -1,6 +1,6 @@
 {
-  "version": "0.6.0",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.0/shunhub-0.6.0-py3-none-any.whl",
-  "sha256": "79d43ce728214c9906cebd153b4480bf9fb92d2247e2eb17013fb69662228c2b",
-  "notes": "SHUN HUB 0.6.0: the lion in the notification area launches your apps; closing the window keeps the Hub there, Quit SHUN HUB ends it; starting the Hub again brings its window back"
+  "version": "0.6.1",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.1/shunhub-0.6.1-py3-none-any.whl",
+  "sha256": "1cd0e9e41237db6c43e80b484c44eaf8cd474bb5278cb4b8fab89b96065efaaa",
+  "notes": "SHUN HUB 0.6.1: an app launched from the window sends the window to the tray, out of the app's way"
 }
