@@ -1,6 +1,6 @@
 {
-  "version": "0.6.1",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.1/shunhub-0.6.1-py3-none-any.whl",
-  "sha256": "1cd0e9e41237db6c43e80b484c44eaf8cd474bb5278cb4b8fab89b96065efaaa",
-  "notes": "SHUN HUB 0.6.1: an app launched from the window sends the window to the tray, out of the app's way"
+  "version": "0.6.2",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.2/shunhub-0.6.2-py3-none-any.whl",
+  "sha256": "bf9fcfa04c425d851424921cb698acfc21ac079d6581444fd74c6b7122816575",
+  "notes": "SHUN HUB 0.6.2: a master serial for the owner's own Hubs lists and launches every app of a catalog"
 }
