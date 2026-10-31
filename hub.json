@@ -1,6 +1,6 @@
 {
-  "version": "0.6.2",
-  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.2/shunhub-0.6.2-py3-none-any.whl",
-  "sha256": "bf9fcfa04c425d851424921cb698acfc21ac079d6581444fd74c6b7122816575",
-  "notes": "SHUN HUB 0.6.2: a master serial for the owner's own Hubs lists and launches every app of a catalog"
+  "version": "0.6.3",
+  "wheel": "https://github.com/shuniverse-dev/shun-releases/releases/download/hub-v0.6.3/shunhub-0.6.3-py3-none-any.whl",
+  "sha256": "b7e0e6dc56d31893f3f8e90f10a475b52f43f288f5214c8d38039c76aa0fd906",
+  "notes": "Update all: one click updates every app, then the Hub"
 }
